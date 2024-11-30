@@ -9,6 +9,7 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 room = "2.6.1"
 roomCommon = "2.6.1"
+glide = "4.15.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -21,8 +22,8 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
-glide = { group = "com.github.bumptech.glide", name = "glide", version = "4.15.1" }
-glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version = "4.15.1" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version = "2.9.0" }
 lottie = { group = "com.airbnb.android", name = "lottie", version = "6.0.0" }

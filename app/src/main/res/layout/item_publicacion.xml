@@ -42,12 +42,25 @@
 
         <!-- Estado y fecha -->
         <TextView
+            android:id="@+id/tvCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cliente"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/tvEstadoFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Estado: Pendiente | Fecha: 2024-12-01"
             android:textSize="12sp"
             android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/btnWhatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
