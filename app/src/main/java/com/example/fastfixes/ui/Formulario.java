@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,21 +18,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.fastfixes.R;
 import com.example.fastfixes.models.Publicacion;
+import com.example.fastfixes.data.AppDatabase;
+import com.example.fastfixes.data.PublicacionDao;
 import com.example.fastfixes.utils.ImageUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Formulario extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private EditText etTitulo, etDescripcion, etEstado, etFecha, etFechaTerminado;
+    private EditText etTitulo, etDescripcion, etFecha;
     private ImageView ivImagenSeleccionada;
     private Button btnSeleccionarImagen, btnGuardar, btnLleveAVerPublicacion;
 
     private String imagenBase64 = ""; // Almacena la imagen en Base64
-    private static ArrayList<Publicacion> publicaciones = new ArrayList<>();
+    private AppDatabase db; // Instancia de la base de datos
+    private PublicacionDao publicacionDao; // Dao para acceder a las publicaciones
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,15 @@ public class Formulario extends AppCompatActivity {
         // Inicializar los campos del formulario
         etTitulo = findViewById(R.id.etTitulo);
         etDescripcion = findViewById(R.id.etDescripcion);
-        etEstado = findViewById(R.id.etEstado);
         etFecha = findViewById(R.id.etFecha);
-        etFechaTerminado = findViewById(R.id.etFechaTerminado);
         ivImagenSeleccionada = findViewById(R.id.ivImagenSeleccionada);
         btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen);
         btnGuardar = findViewById(R.id.btnGuardar);
         btnLleveAVerPublicacion = findViewById(R.id.btnLleveAVerPublicacion);
+
+        // Configurar la base de datos y Dao
+        db = AppDatabase.getInstance(this); // Obtener la instancia de la base de datos
+        publicacionDao = db.publicacionDao(); // Obtener el Dao para Publicaciones
 
         // Configurar botón para seleccionar una imagen
         btnSeleccionarImagen.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +62,7 @@ public class Formulario extends AppCompatActivity {
             }
         });
 
-        // Configurar botón para publicar daños
+        // Configurar botón para guardar la publicación
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,27 +118,47 @@ public class Formulario extends AppCompatActivity {
         Publicacion nuevaPublicacion = new Publicacion();
         nuevaPublicacion.setTitulo(etTitulo.getText().toString());
         nuevaPublicacion.setDescripcion(etDescripcion.getText().toString());
-        nuevaPublicacion.setEstado(etEstado.getText().toString());
+        nuevaPublicacion.setEstado("Solicitado");
         nuevaPublicacion.setImagen(imagenBase64); // Almacenar la imagen como Base64
         nuevaPublicacion.setFecha(etFecha.getText().toString());
-        nuevaPublicacion.setFechaTerminado(etFechaTerminado.getText().toString());
 
-        // Agregar la nueva publicación al array
-        publicaciones.add(nuevaPublicacion);
+        // Guardar la publicación en la base de datos en un hilo secundario
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Intentar insertar la publicación en la base de datos
+                    publicacionDao.insertar(nuevaPublicacion); // Insertamos la publicación en la base de datos
 
-        // Mostrar un mensaje de confirmación
-        Toast.makeText(this, "Publicación exitosa", Toast.LENGTH_SHORT).show();
+                    // Actualizamos la UI en el hilo principal en caso de éxito
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Mostrar mensaje de éxito
+                            Toast.makeText(Formulario.this, "Publicación guardada exitosamente", Toast.LENGTH_SHORT).show();
+                            limpiarCampos(); // Limpiar los campos después de guardar
+                        }
+                    });
 
-        // Limpiar los campos del formulario
-        limpiarCampos();
+                } catch (Exception e) {
+                    // En caso de error al guardar
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(Formulario.this, "Error al guardar la publicación"+e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    e.printStackTrace();
+                    Log.e("Formulario", "Error al guardar la publicación", e);  // Agregar un log de error más detallado
+                }
+            }
+        }).start();
     }
 
     private void limpiarCampos() {
         etTitulo.setText("");
         etDescripcion.setText("");
-        etEstado.setText("");
         etFecha.setText("");
-        etFechaTerminado.setText("");
         ivImagenSeleccionada.setImageResource(android.R.color.transparent); // Limpiar el ImageView
         imagenBase64 = ""; // Limpiar la imagen Base64
     }
@@ -143,9 +168,6 @@ public class Formulario extends AppCompatActivity {
         Intent intent = new Intent(Formulario.this, Muro.class);
         startActivity(intent);
     }
-
-    // Método para obtener el array de publicaciones (opcional)
-    public static ArrayList<Publicacion> getPublicaciones() {
-        return publicaciones;
-    }
 }
+
+

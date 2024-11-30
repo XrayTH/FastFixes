@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fastfixes.R;
 import com.example.fastfixes.models.Publicacion;
+import com.example.fastfixes.data.AppDatabase;
+import com.example.fastfixes.data.PublicacionDao;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,9 @@ public class Muro extends AppCompatActivity {
     private PublicacionAdapter publicacionAdapter;
     private ArrayList<Publicacion> publicaciones;
     private TextView tvBienvenida;
+
+    private AppDatabase db; // Instancia de la base de datos
+    private PublicacionDao publicacionDao; // Dao para acceder a las publicaciones
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,10 @@ public class Muro extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Inicializar la base de datos y el Dao
+        db = AppDatabase.getInstance(this); // Instanciamos la base de datos
+        publicacionDao = db.publicacionDao(); // Obtenemos el Dao para Publicacion
 
         // Inicializar el TextView donde se mostrará el mensaje de bienvenida
         tvBienvenida = findViewById(R.id.bienvenida);
@@ -67,8 +76,7 @@ public class Muro extends AppCompatActivity {
             } else if ("Profesional".equals(tipoUsuario)) {
                 perfilIntent = new Intent(Muro.this, Perfil_pro.class);
             } else {
-                // Si el tipo de usuario no es reconocido, se puede redirigir a un perfil por defecto o manejar el error
-                perfilIntent = new Intent(Muro.this, Perfil_cli.class); // O cualquier otro perfil predeterminado
+                perfilIntent = new Intent(Muro.this, Perfil_cli.class); // Perfil predeterminado
             }
 
             startActivity(perfilIntent);
@@ -87,12 +95,29 @@ public class Muro extends AppCompatActivity {
         rvPublicaciones = findViewById(R.id.rvPublicaciones);
         rvPublicaciones.setLayoutManager(new LinearLayoutManager(this));
 
-        // Obtener las publicaciones (este método depende de cómo estés obteniendo las publicaciones)
-        publicaciones = Formulario.getPublicaciones(); // Este método debe ser correcto según tu implementación
+        // Obtener las publicaciones desde el Dao (usando PublicacionDao)
+        obtenerPublicaciones(); // Llamamos a la función para obtener las publicaciones
+    }
 
-        // Configurar el adaptador para RecyclerView
-        publicacionAdapter = new PublicacionAdapter(this, publicaciones);
-        rvPublicaciones.setAdapter(publicacionAdapter);
+    private void obtenerPublicaciones() {
+        // Usamos un Thread o AsyncTask para hacer la consulta de Room
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Obtenemos las publicaciones desde el Dao
+                publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerTodas();
+
+                // Actualizamos el RecyclerView en el hilo principal
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Configuramos el adaptador con los datos obtenidos
+                        publicacionAdapter = new PublicacionAdapter(Muro.this, publicaciones);
+                        rvPublicaciones.setAdapter(publicacionAdapter);
+                    }
+                });
+            }
+        }).start();
     }
 }
 

@@ -4,13 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
 
-@Entity(
-        tableName = "publicaciones",
-        foreignKeys = {
-                @ForeignKey(entity = Cliente.class, parentColumns = "id", childColumns = "cliente"),
-                @ForeignKey(entity = Profesional.class, parentColumns = "id", childColumns = "profesional")
-        }
-)
+@Entity(tableName = "publicaciones")
 public class Publicacion {
     @PrimaryKey(autoGenerate = true)
     private int id;

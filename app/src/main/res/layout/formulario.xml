@@ -58,16 +58,6 @@
             android:textColor="#333333" />
 
         <!-- Campo para el estado -->
-        <EditText
-            android:id="@+id/etEstado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Estado (pendiente, en proceso, terminado)"
-            android:background="@drawable/minimal_input_background"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="text"
-            android:textColor="#333333" />
 
         <!-- Campo para la fecha -->
         <EditText
@@ -82,16 +72,6 @@
             android:textColor="#333333" />
 
         <!-- Campo para la fecha de finalización -->
-        <EditText
-            android:id="@+id/etFechaTerminado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Fecha Terminada (YYYY-MM-DD)"
-            android:background="@drawable/minimal_input_background"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="date"
-            android:textColor="#333333" />
 
         <!-- Botón para publicar daños -->
         <Button
