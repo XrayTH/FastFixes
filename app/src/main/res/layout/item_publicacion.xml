@@ -57,10 +57,16 @@
             android:textSize="12sp" />
 
         <Button
+            android:id="@+id/btnLlamar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Llamar" />
+
+        <Button
             android:id="@+id/btnWhatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Whatsapp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

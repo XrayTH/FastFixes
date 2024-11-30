@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,13 +21,15 @@ import com.example.fastfixes.R;
 import com.example.fastfixes.models.Publicacion;
 import com.example.fastfixes.data.AppDatabase;
 import com.example.fastfixes.data.PublicacionDao;
-import com.example.fastfixes.utils.ImageUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class Formulario extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int MAX_IMAGE_SIZE_MB = 1; // Tamaño máximo en MB
+    private static final int MAX_IMAGE_DIMENSION = 1000; // Dimensión máxima (ancho o alto)
 
     private EditText etTitulo, etDescripcion, etFecha;
     private ImageView ivImagenSeleccionada;
@@ -51,8 +54,8 @@ public class Formulario extends AppCompatActivity {
         btnLleveAVerPublicacion = findViewById(R.id.btnLleveAVerPublicacion);
 
         // Configurar la base de datos y Dao
-        db = AppDatabase.getInstance(this); // Obtener la instancia de la base de datos
-        publicacionDao = db.publicacionDao(); // Obtener el Dao para Publicaciones
+        db = AppDatabase.getInstance(this);
+        publicacionDao = db.publicacionDao();
 
         // Configurar botón para seleccionar una imagen
         btnSeleccionarImagen.setOnClickListener(new View.OnClickListener() {
@@ -92,14 +95,31 @@ public class Formulario extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
             try {
-                // Cargar la imagen seleccionada en el ImageView usando Glide
-                Glide.with(this).load(imageUri).into(ivImagenSeleccionada);
-
-                // Convertir la imagen a Bitmap
+                // Convertir la imagen seleccionada a Bitmap
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
-                // Convertir el Bitmap a Base64
-                imagenBase64 = ImageUtils.bitmapToBase64(bitmap);
+                // Verificar las dimensiones de la imagen
+                if (bitmap.getWidth() > MAX_IMAGE_DIMENSION || bitmap.getHeight() > MAX_IMAGE_DIMENSION) {
+                    Toast.makeText(this, "La imagen excede las dimensiones máximas de 1000x1000 píxeles.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Convertir el Bitmap a un arreglo de bytes
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+
+                // Verificar el tamaño del archivo
+                if (imageBytes.length > MAX_IMAGE_SIZE_MB * 1024 * 1024) {
+                    Toast.makeText(this, "El tamaño de la imagen excede 1 MB. Por favor selecciona otra.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Convertir la imagen a Base64
+                imagenBase64 = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+                // Cargar la imagen seleccionada en el ImageView usando Glide
+                Glide.with(this).load(imageUri).into(ivImagenSeleccionada);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -119,7 +139,7 @@ public class Formulario extends AppCompatActivity {
         nuevaPublicacion.setTitulo(etTitulo.getText().toString());
         nuevaPublicacion.setDescripcion(etDescripcion.getText().toString());
         nuevaPublicacion.setEstado("Solicitado");
-        nuevaPublicacion.setImagen(imagenBase64); // Almacenar la imagen como Base64
+        nuevaPublicacion.setImagen(imagenBase64);
         nuevaPublicacion.setFecha(etFecha.getText().toString());
 
         // Guardar la publicación en la base de datos en un hilo secundario
@@ -127,29 +147,23 @@ public class Formulario extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    // Intentar insertar la publicación en la base de datos
-                    publicacionDao.insertar(nuevaPublicacion); // Insertamos la publicación en la base de datos
+                    publicacionDao.insertar(nuevaPublicacion);
 
-                    // Actualizamos la UI en el hilo principal en caso de éxito
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            // Mostrar mensaje de éxito
                             Toast.makeText(Formulario.this, "Publicación guardada exitosamente", Toast.LENGTH_SHORT).show();
-                            limpiarCampos(); // Limpiar los campos después de guardar
+                            limpiarCampos();
                         }
                     });
-
                 } catch (Exception e) {
-                    // En caso de error al guardar
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Formulario.this, "Error al guardar la publicación"+e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Formulario.this, "Error al guardar la publicación", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    e.printStackTrace();
-                    Log.e("Formulario", "Error al guardar la publicación", e);  // Agregar un log de error más detallado
+                    Log.e("Formulario", "Error al guardar la publicación", e);
                 }
             }
         }).start();
@@ -159,15 +173,15 @@ public class Formulario extends AppCompatActivity {
         etTitulo.setText("");
         etDescripcion.setText("");
         etFecha.setText("");
-        ivImagenSeleccionada.setImageResource(android.R.color.transparent); // Limpiar el ImageView
-        imagenBase64 = ""; // Limpiar la imagen Base64
+        ivImagenSeleccionada.setImageResource(android.R.color.transparent);
+        imagenBase64 = "";
     }
 
-    // Método para ir al Muro (Activity)
     private void irAlMuro() {
         Intent intent = new Intent(Formulario.this, Muro.class);
         startActivity(intent);
     }
 }
+
 
 

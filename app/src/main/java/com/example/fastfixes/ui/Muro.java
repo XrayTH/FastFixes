@@ -107,6 +107,11 @@ public class Muro extends AppCompatActivity {
                 // Obtenemos las publicaciones desde el Dao
                 publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerTodas();
 
+                // Invertimos el orden de las publicaciones
+                if (publicaciones != null && !publicaciones.isEmpty()) {
+                    java.util.Collections.reverse(publicaciones);
+                }
+
                 // Actualizamos el RecyclerView en el hilo principal
                 runOnUiThread(new Runnable() {
                     @Override
