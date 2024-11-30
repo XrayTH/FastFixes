@@ -79,6 +79,18 @@
                 android:layout_marginBottom="16dp"
                 android:inputType="textEmailAddress" />
 
+            <EditText
+                android:id="@+id/etCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ciudad" />
+
+            <EditText
+                android:id="@+id/etDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dirección" />
+
             <!-- Campo de texto para Teléfono -->
             <EditText
                 android:id="@+id/etTelefono"
