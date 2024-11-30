@@ -1,5 +1,6 @@
 package com.example.fastfixes.ui;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,6 +71,8 @@ public class Login extends AppCompatActivity {
 
     // AsyncTask para manejar la verificación en segundo plano
     private class LoginTask extends AsyncTask<String, Void, Boolean> {
+        private String tipoUsuario;
+        private String usuarioNombre;
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -86,36 +89,45 @@ public class Login extends AppCompatActivity {
             super.onPostExecute(loginExitoso);
             if (loginExitoso) {
                 Toast.makeText(Login.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-                // Aquí puedes proceder a navegar a la siguiente pantalla, si lo deseas
+
+                // Enviar datos a la actividad Muro
+                Intent intent = new Intent(Login.this, Muro.class);
+                intent.putExtra("usuario", usuarioNombre);
+                intent.putExtra("tipoUsuario", tipoUsuario);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(Login.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
         }
-    }
 
-    // Método para verificar si el usuario es un Cliente o Profesional
-    private boolean verificarLogin(String username, String password) {
-        // Verificamos en la tabla de Clientes
-        List<Cliente> clientes = clienteDao.obtenerTodos();
-        for (Cliente cliente : clientes) {
-            if (cliente.getUsuario().equals(username) && cliente.getContrasena().equals(password)) {
-                Log.d("Login", "Usuario encontrado en clientes");
-                // Aquí podrías guardar el tipo de usuario en una variable global o en preferencia compartida
-                return true;
+        // Método para verificar si el usuario es un Cliente o Profesional
+        private boolean verificarLogin(String username, String password) {
+            // Verificamos en la tabla de Clientes
+            List<Cliente> clientes = clienteDao.obtenerTodos();
+            for (Cliente cliente : clientes) {
+                if (cliente.getUsuario().equals(username) && cliente.getContrasena().equals(password)) {
+                    Log.d("Login", "Usuario encontrado en clientes");
+                    tipoUsuario = "Cliente";
+                    usuarioNombre = cliente.getUsuario();
+                    return true;
+                }
             }
-        }
 
-        // Verificamos en la tabla de Profesionales
-        List<Profesional> profesionales = profesionalDao.obtenerTodos();
-        for (Profesional profesional : profesionales) {
-            if (profesional.getUsuario().equals(username) && profesional.getContrasena().equals(password)) {
-                Log.d("Login", "Usuario encontrado en profesionales");
-                // Aquí podrías guardar el tipo de usuario en una variable global o en preferencia compartida
-                return true;
+            // Verificamos en la tabla de Profesionales
+            List<Profesional> profesionales = profesionalDao.obtenerTodos();
+            for (Profesional profesional : profesionales) {
+                if (profesional.getUsuario().equals(username) && profesional.getContrasena().equals(password)) {
+                    Log.d("Login", "Usuario encontrado en profesionales");
+                    tipoUsuario = "Profesional";
+                    usuarioNombre = profesional.getUsuario();
+                    return true;
+                }
             }
-        }
 
-        // Si no encontramos coincidencias en ninguna tabla
-        return false;
+            // Si no encontramos coincidencias en ninguna tabla
+            return false;
+        }
     }
 }
+
