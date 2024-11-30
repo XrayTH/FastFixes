@@ -79,8 +79,13 @@ public class Muro extends AppCompatActivity {
                 perfilIntent = new Intent(Muro.this, Perfil_cli.class); // Perfil predeterminado
             }
 
+            // Pasamos los datos al Intent
+            perfilIntent.putExtra("usuario", usuario);
+            perfilIntent.putExtra("tipoUsuario", tipoUsuario);
+
+            // Iniciar la nueva actividad
             startActivity(perfilIntent);
-            finish(); // Finalizar la actividad actual para evitar el regreso
+            finish(); // Finalizar la actividad actual
         });
 
         // Configurar el botón de salir

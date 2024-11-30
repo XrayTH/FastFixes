@@ -33,8 +33,18 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Nombre del Usuario -->
+
         <TextView
-            android:id="@+id/txtNombreUsuario"
+            android:id="@+id/txtTipoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tipo Usuario"
+            android:textColor="#007BFE"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre de Usuario"
@@ -44,6 +54,7 @@
             android:gravity="center" />
 
         <!-- Subtítulo para Publicar -->
+
         <TextView
             android:id="@+id/titulo6"
             android:layout_width="wrap_content"
