@@ -37,11 +37,11 @@
             android:id="@+id/etcorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo Electrónico"
-            android:background="@drawable/minimal_input_background"
-            android:padding="12dp"
             android:layout_marginBottom="16dp"
-            android:inputType="textEmailAddress" />
+            android:background="@drawable/minimal_input_background"
+            android:hint="Usuario"
+            android:inputType="textEmailAddress"
+            android:padding="12dp" />
 
         <!-- Campo de texto para Contraseña -->
         <EditText
