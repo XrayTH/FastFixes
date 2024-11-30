@@ -52,9 +52,7 @@ dependencies {
 
     implementation(libs.lottie)
     implementation(libs.shimmer)
-    implementation(libs.fancyShowCase)
-    implementation(libs.imageCropper)
-    implementation(libs.circularReveal)
+
 
 
 }

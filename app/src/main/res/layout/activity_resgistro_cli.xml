@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp"
+    tools:context=".ui.Registro_cli">
+
+    <!-- ScrollView para permitir el desplazamiento -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <!-- Contenedor central para agrupar los elementos -->
+        <LinearLayout
+            android:id="@+id/centeredContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/titulo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registro Cliente"
+                android:textSize="24sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:layout_marginBottom="32dp"
+                android:gravity="center" />
+
+            <!-- Campo de texto para Usuario -->
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Nombre -->
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Apellido -->
+            <EditText
+                android:id="@+id/etApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Correo Electrónico -->
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo Electrónico"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textEmailAddress" />
+
+            <!-- Campo de texto para Teléfono -->
+            <EditText
+                android:id="@+id/etTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teléfono"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"
+                android:inputType="phone" />
+
+            <!-- Botón Registrarse -->
+            <Button
+                android:id="@+id/btnRegistro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrarse"
+                android:backgroundTint="#007BFF"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp" />
+
+            <!-- Botón Regresar -->
+            <Button
+                android:id="@+id/btnregresar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Regresar"
+                android:backgroundTint="#DDDDDD"
+                android:textColor="#333333"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     android:padding="16dp"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.Perfil_cli">
 
-    <!-- Contenedor central para agrupar los elementos -->
+    <!-- Contenedor centralizado -->
     <LinearLayout
         android:id="@+id/centeredContainer"
         android:layout_width="0dp"
@@ -21,58 +21,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Título -->
+        <!-- Título Bienvenido -->
         <TextView
-            android:id="@+id/Tituloapp"
+            android:id="@+id/titulo5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="FastFixes"
-            android:textColor="#007BFF"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Subtituloapp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tu app de mantenimiento"
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="32dp" />
-
-        <!-- Título de Desarrolladores -->
-        <TextView
-            android:id="@+id/Desarrolladores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desarrollada por: Javier Silva y Juan Pablo Valverde"
-            android:textSize="14sp"
+            android:text="Bienvenido"
+            android:textSize="24sp"
             android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Nombre del Usuario -->
+        <TextView
+            android:id="@+id/txtNombreUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Usuario"
+            android:textSize="20sp"
+            android:textColor="#007BFF"
             android:layout_marginBottom="32dp"
             android:gravity="center" />
 
-        <!-- Botón Iniciar Sesión -->
+        <!-- Subtítulo para Publicar -->
+        <TextView
+            android:id="@+id/titulo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Desea publicar algún daño?"
+            android:textSize="18sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="24dp" />
+
+
+
+        <!-- Botón Publicar -->
         <Button
-            android:id="@+id/Iniciosesion"
+            android:id="@+id/publicar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
+            android:text="Publicar"
             android:backgroundTint="#007BFF"
             android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:padding="12dp" />
 
-        <!-- Botón Registrarse -->
+        <!-- Botón Ver Posts -->
         <Button
-            android:id="@+id/Registro"
+            android:id="@+id/post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Regístrate"
+            android:text="Ver posts"
+            android:backgroundTint="#28A745"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp" />
+
+        <!-- Botón Salir -->
+        <Button
+            android:id="@+id/salir2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salir"
             android:backgroundTint="#DDDDDD"
             android:textColor="#333333"
             android:padding="12dp" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

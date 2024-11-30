@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Registro_pro">
+
+    <!-- ScrollView para permitir el desplazamiento -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <!-- Contenedor central para agrupar los elementos -->
+        <LinearLayout
+            android:id="@+id/centeredContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/titulo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="Registro Profesional"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Campo de texto para Usuario -->
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Nombre -->
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Apellido -->
+            <EditText
+                android:id="@+id/etApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Correo Electrónico -->
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo Electrónico"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textEmailAddress" />
+
+            <!-- Campo de texto para Teléfono -->
+            <EditText
+                android:id="@+id/etTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teléfono"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="phone" />
+
+            <!-- Campo de texto para Ciudad -->
+            <EditText
+                android:id="@+id/etCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ciudad"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Dirección -->
+            <EditText
+                android:id="@+id/etDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dirección"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Campo de texto para Profesión -->
+            <EditText
+                android:id="@+id/etProfesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Profesión"
+                android:background="@drawable/minimal_input_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="text" />
+
+            <!-- Botón Registrarse -->
+            <Button
+                android:id="@+id/btnRegistro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrarse"
+                android:backgroundTint="#007BFF"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp" />
+
+            <!-- Botón Regresar -->
+            <Button
+                android:id="@+id/btnregresar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Regresar"
+                android:backgroundTint="#DDDDDD"
+                android:textColor="#333333"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

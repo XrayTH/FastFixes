@@ -1,3 +1,4 @@
 <resources>
+    <!-- Nombre de la aplicación -->
     <string name="app_name">FastFixes</string>
 </resources>

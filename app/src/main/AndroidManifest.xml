@@ -15,6 +15,33 @@
         android:theme="@style/Theme.FastFixes"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Historial"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Muro"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Formulario"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Perfil_pro"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Perfil_cli"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Registro_pro"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Resgistro_cli"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Registro"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Login"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
