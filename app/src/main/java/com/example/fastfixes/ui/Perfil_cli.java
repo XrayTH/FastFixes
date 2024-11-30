@@ -30,15 +30,6 @@ public class Perfil_cli extends AppCompatActivity {
             finish(); // Finalizar actividad actual
         });
 
-        Button post = findViewById(R.id.post);
-
-        // Configurar el clic del botón
-        post.setOnClickListener(v -> {
-            Intent intent = new Intent(Perfil_cli.this, Muro.class);
-            startActivity(intent);
-            finish(); // Finalizar actividad actual
-        });
-
         Button salir2 = findViewById(R.id.salir2);
 
         // Configurar el clic del botón

@@ -59,7 +59,18 @@ public class Muro extends AppCompatActivity {
         // Configurar el botón para ir al perfil
         Button btn_perfil = findViewById(R.id.btn_perfil);
         btn_perfil.setOnClickListener(v -> {
-            Intent perfilIntent = new Intent(Muro.this, Perfil_cli.class);
+            Intent perfilIntent;
+
+            // Verificar el tipo de usuario y elegir la actividad correspondiente
+            if ("Cliente".equals(tipoUsuario)) {
+                perfilIntent = new Intent(Muro.this, Perfil_cli.class);
+            } else if ("Profesional".equals(tipoUsuario)) {
+                perfilIntent = new Intent(Muro.this, Perfil_pro.class);
+            } else {
+                // Si el tipo de usuario no es reconocido, se puede redirigir a un perfil por defecto o manejar el error
+                perfilIntent = new Intent(Muro.this, Perfil_cli.class); // O cualquier otro perfil predeterminado
+            }
+
             startActivity(perfilIntent);
             finish(); // Finalizar la actividad actual para evitar el regreso
         });

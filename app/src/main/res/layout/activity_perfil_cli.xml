@@ -67,15 +67,6 @@
             android:padding="12dp" />
 
         <!-- Botón Ver Posts -->
-        <Button
-            android:id="@+id/post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver posts"
-            android:backgroundTint="#28A745"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp"
-            android:padding="12dp" />
 
         <!-- Botón Salir -->
         <Button

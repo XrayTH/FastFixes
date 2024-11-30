@@ -38,19 +38,6 @@ public class Perfil_pro extends AppCompatActivity {
             }
         });
 
-        // Referencia al botón "pendiete"
-        Button pendiente = findViewById(R.id.pendiente);
-
-        // Configurar el clic del botón para regresar a MainActivity
-        pendiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil_pro.this, Historial.class);
-                startActivity(intent);
-                finish(); // Finalizar la actividad actual para evitar volver con "atrás"
-            }
-        });
-
         // Referencia al botón "Regresar"
         Button salir1 = findViewById(R.id.salir1);
 
