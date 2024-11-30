@@ -1,6 +1,7 @@
 package com.example.fastfixes.ui;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.fastfixes.R;
 import com.example.fastfixes.models.Publicacion;
+import com.example.fastfixes.utils.ImageUtils;
 
 import java.util.List;
 
@@ -43,12 +44,18 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
 
-        // Cargar la imagen usando Glide
-        Glide.with(context)
-                .load(publicacion.getImagen())
-                .placeholder(R.drawable.placeholder) // Imagen de carga por defecto
-                .error(R.drawable.error) // Imagen de error
-                .into(holder.ivPublicacion);
+        // Convertir la cadena Base64 a un Bitmap
+        String imagenBase64 = publicacion.getImagen();
+        if (imagenBase64 != null && !imagenBase64.isEmpty()) {
+            Bitmap bitmap = ImageUtils.base64ToBitmap(imagenBase64);
+            if (bitmap != null) {
+                holder.ivPublicacion.setImageBitmap(bitmap);
+            } else {
+                holder.ivPublicacion.setImageResource(R.drawable.error); // Imagen de error si falla la decodificación
+            }
+        } else {
+            holder.ivPublicacion.setImageResource(R.drawable.placeholder); // Imagen por defecto si no hay imagen
+        }
     }
 
     @Override
@@ -70,3 +77,4 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         }
     }
 }
+
