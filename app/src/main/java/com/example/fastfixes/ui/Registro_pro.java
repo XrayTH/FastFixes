@@ -17,6 +17,7 @@ public class Registro_pro extends AppCompatActivity {
 
     // Campos del formulario
     private EditText etUsuario;
+    private EditText etContrasena;
     private EditText etNombre;
     private EditText etApellido;
     private EditText etCiudad;
@@ -32,6 +33,7 @@ public class Registro_pro extends AppCompatActivity {
 
         // Referencias a los campos de entrada
         etUsuario = findViewById(R.id.etUsuario);
+        etContrasena = findViewById(R.id.etContrasena);
         etNombre = findViewById(R.id.etNombre);
         etApellido = findViewById(R.id.etApellido);
         etCiudad = findViewById(R.id.etCiudad);
@@ -64,6 +66,7 @@ public class Registro_pro extends AppCompatActivity {
     private void registrarProfesional() {
         // Obtener los valores de los campos
         String usuario = etUsuario.getText().toString().trim();
+        String contrasena = etContrasena.getText().toString().trim();
         String nombre = etNombre.getText().toString().trim();
         String apellido = etApellido.getText().toString().trim();
         String ciudad = etCiudad.getText().toString().trim();
@@ -81,6 +84,7 @@ public class Registro_pro extends AppCompatActivity {
         // Crear profesional
         Profesional nuevoProfesional = new Profesional();
         nuevoProfesional.setUsuario(usuario);
+        nuevoProfesional.setContrasena(contrasena);
         nuevoProfesional.setNombre(nombre);
         nuevoProfesional.setApellido(apellido);
         nuevoProfesional.setCiudad(ciudad);
@@ -99,6 +103,7 @@ public class Registro_pro extends AppCompatActivity {
                 Toast.makeText(Registro_pro.this, "Profesional registrado exitosamente", Toast.LENGTH_SHORT).show();
                 // Opcionalmente, limpiar los campos
                 etUsuario.setText("");
+                etContrasena.setText("");
                 etNombre.setText("");
                 etApellido.setText("");
                 etCiudad.setText("");
