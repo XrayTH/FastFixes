@@ -96,6 +96,20 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             holder.btnFinalizar.setVisibility(View.GONE); // Ocultar si no cumple las condiciones
         }
 
+        // OnClickListener para el botón Finalizar
+        holder.btnFinalizar.setOnClickListener(v -> {
+            // Cambiar el estado a "Finalizado"
+            publicacion.setEstado("Finalizado");
+
+            // Actualizar la UI de la publicación
+            notifyItemChanged(position);  // Notifica que el elemento ha cambiado para actualizar la UI
+
+            // Guardar los cambios en la base de datos
+            new Thread(() -> {
+                publicacionDao.actualizar(publicacion);  // Llama al método de actualización en el DAO
+            }).start();
+        });
+
         // Obtener y decodificar la imagen Base64
         String imagenBase64 = publicacion.getImagen();
         if (imagenBase64 != null && !imagenBase64.isEmpty()) {
@@ -122,7 +136,6 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             holder.ivPublicacion.setImageResource(R.drawable.placeholder); // Imagen por defecto si no hay imagen
         }
     }
-
 
     @Override
     public int getItemCount() {
