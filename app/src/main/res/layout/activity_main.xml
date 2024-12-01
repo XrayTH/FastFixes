@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     android:padding="16dp"
     tools:context=".ui.MainActivity">
 
@@ -21,67 +21,128 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Título -->
-        <TextView
-            android:id="@+id/Tituloapp"
-            android:layout_width="wrap_content"
+        <!-- Tarjeta con título y subtítulo -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTitleSubtitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="FastFixes"
-            android:textColor="#007BFF"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Título con efecto shimmer -->
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="0.9"
+                    app:shimmer_duration="1500"
+                    app:shimmer_highlight_alpha="1.0">
+
+                    <TextView
+                        android:id="@+id/Tituloapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FastFixes"
+                        android:textColor="#007BFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-bold"
+                        android:shadowColor="#888888"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="4" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <!-- Subtítulo -->
+                <TextView
+                    android:id="@+id/Subtituloapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tu app de mantenimiento"
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Animación Lottie -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
             android:layout_width="240dp"
             android:layout_height="160dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/herramienta" />
+            app:lottie_rawRes="@raw/herramienta"
+            android:layout_marginBottom="24dp" />
 
-
-        <TextView
-            android:id="@+id/Subtituloapp"
-            android:layout_width="wrap_content"
+        <!-- Tarjeta para desarrolladores -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDesarrolladores"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tu app de mantenimiento"
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="32dp" />
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
 
-        <!-- Título de Desarrolladores -->
-        <TextView
-            android:id="@+id/Desarrolladores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desarrollada por: Javier Silva y Juan Pablo Valverde"
-            android:textSize="14sp"
-            android:textColor="#333333"
-            android:layout_marginBottom="32dp"
-            android:gravity="center" />
+            <TextView
+                android:id="@+id/Desarrolladores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Desarrollada por: Javier Silva y Juan Pablo Valverde"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:gravity="center"
+                android:padding="12dp" />
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Botón Iniciar Sesión -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/Iniciosesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
-            android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            app:backgroundTint="#007BFF"
+            style="@style/Widget.MaterialComponents.Button" />
+
 
         <!-- Botón Registrarse -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/Registro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Regístrate"
-            android:backgroundTint="#DDDDDD"
-            android:textColor="#333333"
-            android:padding="12dp" />
+            android:textColor="@color/black"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/black"
+            android:padding="8dp"
+            app:backgroundTint="#DDDDDD"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black"
+            style="@style/Widget.MaterialComponents.Button" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
