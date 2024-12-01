@@ -77,7 +77,7 @@ public class Historial extends AppCompatActivity {
             @Override
             public void run() {
                 // Obtener todas las publicaciones con estado "Solicitado"
-                publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerPorEstado("Solicitado");
+                publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerTodas();
 
                 if (publicaciones != null && !publicaciones.isEmpty()) {
                     // Filtrar las publicaciones por usuario (cliente o profesional)
