@@ -23,7 +23,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
 
     private final Context context;
     private final List<Publicacion> publicaciones;
-    private final String tipoUsuario; // Nuevo campo para tipo de usuario
+    private final String tipoUsuario; // Campo para tipo de usuario
 
     // Constructor
     public PublicacionAdapter(Context context, List<Publicacion> publicaciones, String tipoUsuario) {
@@ -48,7 +48,6 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvLugar.setText("Lugar: "+publicacion.getLugar());
         holder.tvTelefono.setText("Telefono: "+publicacion.getTelefono());
-        holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
         holder.tvCliente.setText("Cliente: " + publicacion.getCliente());
 
@@ -61,6 +60,13 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             holder.btnAceptar.setVisibility(View.VISIBLE);
             holder.btnLlamar.setVisibility(View.VISIBLE);
             holder.btnWhatsapp.setVisibility(View.VISIBLE);
+        }
+
+        // Mostrar btnAceptar solo si el estado es "Solicitado"
+        if ("Solicitado".equals(publicacion.getEstado())) {
+            holder.btnAceptar.setVisibility(View.VISIBLE); // Mostrar si el estado es "Solicitado"
+        } else {
+            holder.btnAceptar.setVisibility(View.GONE); // Ocultar si el estado no es "Solicitado"
         }
 
         // Obtener y decodificar la imagen Base64
@@ -118,6 +124,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         }
     }
 }
+
 
 
 
