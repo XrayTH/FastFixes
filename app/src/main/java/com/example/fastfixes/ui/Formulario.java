@@ -39,10 +39,18 @@ public class Formulario extends AppCompatActivity {
     private AppDatabase db; // Instancia de la base de datos
     private PublicacionDao publicacionDao; // Dao para acceder a las publicaciones
 
+    private String usuario; // Almacena el usuario recibido
+    private String tipoUsuario; // Almacena el tipo de usuario recibido
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.formulario);
+
+        // Obtener el usuario y tipoUsuario del Intent
+        Intent intent = getIntent();
+        usuario = intent.getStringExtra("usuario");
+        tipoUsuario = intent.getStringExtra("tipoUsuario");
 
         // Inicializar los campos del formulario
         etTitulo = findViewById(R.id.etTitulo);
@@ -58,28 +66,13 @@ public class Formulario extends AppCompatActivity {
         publicacionDao = db.publicacionDao();
 
         // Configurar botón para seleccionar una imagen
-        btnSeleccionarImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSelectorImagen();
-            }
-        });
+        btnSeleccionarImagen.setOnClickListener(v -> abrirSelectorImagen());
 
         // Configurar botón para guardar la publicación
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guardarPublicacion();
-            }
-        });
+        btnGuardar.setOnClickListener(v -> guardarPublicacion());
 
         // Configurar botón para ir al Muro
-        btnLleveAVerPublicacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                irAlMuro();
-            }
-        });
+        btnLleveAVerPublicacion.setOnClickListener(v -> irAlMuro());
     }
 
     private void abrirSelectorImagen() {
@@ -134,10 +127,6 @@ public class Formulario extends AppCompatActivity {
             return;
         }
 
-        // Obtener el usuario del Intent
-        Intent intent = getIntent();
-        String usuario = intent.getStringExtra("usuario"); // El nombre del cliente
-
         if (usuario == null || usuario.isEmpty()) {
             Toast.makeText(this, "El usuario no está disponible", Toast.LENGTH_SHORT).show();
             return;
@@ -153,28 +142,17 @@ public class Formulario extends AppCompatActivity {
         nuevaPublicacion.setCliente(usuario); // Asignamos el usuario como cliente
 
         // Guardar la publicación en la base de datos en un hilo secundario
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    publicacionDao.insertar(nuevaPublicacion);
+        new Thread(() -> {
+            try {
+                publicacionDao.insertar(nuevaPublicacion);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(Formulario.this, "Publicación guardada exitosamente", Toast.LENGTH_SHORT).show();
-                            limpiarCampos();
-                        }
-                    });
-                } catch (Exception e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(Formulario.this, "Error al guardar la publicación", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    Log.e("Formulario", "Error al guardar la publicación", e);
-                }
+                runOnUiThread(() -> {
+                    Toast.makeText(Formulario.this, "Publicación guardada exitosamente", Toast.LENGTH_SHORT).show();
+                    limpiarCampos();
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> Toast.makeText(Formulario.this, "Error al guardar la publicación", Toast.LENGTH_SHORT).show());
+                Log.e("Formulario", "Error al guardar la publicación", e);
             }
         }).start();
     }
@@ -188,10 +166,13 @@ public class Formulario extends AppCompatActivity {
     }
 
     private void irAlMuro() {
-        Intent intent = new Intent(Formulario.this, Muro.class);
-        startActivity(intent);
+        Intent intentMuro = new Intent(Formulario.this, Muro.class);
+        intentMuro.putExtra("usuario", usuario);
+        intentMuro.putExtra("tipoUsuario", tipoUsuario);
+        startActivity(intentMuro);
     }
 }
+
 
 
 
