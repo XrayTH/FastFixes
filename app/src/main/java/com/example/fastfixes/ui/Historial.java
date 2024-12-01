@@ -60,11 +60,19 @@ public class Historial extends AppCompatActivity {
         // Configurar el botón "volver"
         Button volver = findViewById(R.id.volver);
         volver.setOnClickListener(v -> {
-            Intent volverIntent = new Intent(Historial.this, Perfil_pro.class);
-            volverIntent.putExtra("usuario", usuario);
-            volverIntent.putExtra("tipoUsuario", tipoUsuario);
-            startActivity(volverIntent);
-            finish(); // Finalizar actividad actual
+            if(tipoUsuario.equals("Profesional")) {
+                Intent volverIntent = new Intent(Historial.this, Perfil_pro.class);
+                volverIntent.putExtra("usuario", usuario);
+                volverIntent.putExtra("tipoUsuario", tipoUsuario);
+                startActivity(volverIntent);
+                finish(); // Finalizar actividad actual
+            }else{
+                Intent volverIntent = new Intent(Historial.this, Perfil_cli.class);
+                volverIntent.putExtra("usuario", usuario);
+                volverIntent.putExtra("tipoUsuario", tipoUsuario);
+                startActivity(volverIntent);
+                finish(); // Finalizar actividad actual
+            }
         });
 
         // Inicializar RecyclerView para las publicaciones

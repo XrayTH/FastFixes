@@ -17,7 +17,6 @@ public class Publicacion {
     private String estado;
     private String profesional;
     private String fecha;
-    private String fechaTerminado;
 
     // Getters y Setters
     public int getId() { return id; }
@@ -50,6 +49,4 @@ public class Publicacion {
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public String getFechaTerminado() { return fechaTerminado; }
-    public void setFechaTerminado(String fechaTerminado) { this.fechaTerminado = fechaTerminado; }
 }
