@@ -97,7 +97,7 @@ public class Historial extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            publicacionAdapter = new PublicacionAdapter(Historial.this, publicacionesFiltradas, tipoUsuario);
+                            publicacionAdapter = new PublicacionAdapter(Historial.this, publicacionesFiltradas, usuario, tipoUsuario, publicacionDao);
                             rvPublicaciones.setAdapter(publicacionAdapter);
                         }
                     });

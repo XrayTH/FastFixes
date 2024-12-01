@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.fastfixes.R;
+import com.example.fastfixes.data.PublicacionDao;
 import com.example.fastfixes.models.Publicacion;
 
 import java.util.List;
@@ -24,12 +25,16 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
     private final Context context;
     private final List<Publicacion> publicaciones;
     private final String tipoUsuario; // Campo para tipo de usuario
+    private final String usuario;
+    private final PublicacionDao publicacionDao;  // Agrega esta línea
 
     // Constructor
-    public PublicacionAdapter(Context context, List<Publicacion> publicaciones, String tipoUsuario) {
+    public PublicacionAdapter(Context context, List<Publicacion> publicaciones, String usuario, String tipoUsuario, PublicacionDao publicacionDao) {
         this.context = context;
         this.publicaciones = publicaciones;
-        this.tipoUsuario = tipoUsuario; // Asignamos el tipo de usuario
+        this.tipoUsuario = tipoUsuario;
+        this.usuario = usuario;
+        this.publicacionDao = publicacionDao;  // Inicializa el dao
     }
 
     @NonNull
@@ -46,8 +51,8 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         // Bind de los datos
         holder.tvTitulo.setText(publicacion.getTitulo());
         holder.tvDescripcion.setText(publicacion.getDescripcion());
-        holder.tvLugar.setText("Lugar: "+publicacion.getLugar());
-        holder.tvTelefono.setText("Telefono: "+publicacion.getTelefono());
+        holder.tvLugar.setText("Lugar: " + publicacion.getLugar());
+        holder.tvTelefono.setText("Telefono: " + publicacion.getTelefono());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
         holder.tvCliente.setText("Cliente: " + publicacion.getCliente());
 
@@ -68,6 +73,21 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         } else {
             holder.btnAceptar.setVisibility(View.GONE); // Ocultar si el estado no es "Solicitado"
         }
+
+        // OnClickListener para el botón Aceptar
+        holder.btnAceptar.setOnClickListener(v -> {
+            // Cambiar el estado a "Pendiente" y asignar el profesional como el usuario actual
+            publicacion.setEstado("Pendiente");
+            publicacion.setProfesional(usuario);  // Asigna el usuario actual como el profesional
+
+            // Actualizar la UI de la publicación
+            notifyItemChanged(position);  // Notifica que el elemento ha cambiado para actualizar la UI
+
+            // Guardar los cambios en la base de datos
+            new Thread(() -> {
+                publicacionDao.actualizar(publicacion);  // Llama al método de actualización en el DAO
+            }).start();
+        });
 
         // Mostrar btnFinalizar solo si el estado no es "Finalizado" y el tipo de usuario es "Cliente"
         if (!"Finalizado".equals(publicacion.getEstado()) && "Cliente".equals(tipoUsuario)) {
@@ -102,6 +122,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             holder.ivPublicacion.setImageResource(R.drawable.placeholder); // Imagen por defecto si no hay imagen
         }
     }
+
 
     @Override
     public int getItemCount() {

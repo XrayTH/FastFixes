@@ -115,13 +115,14 @@ public class Muro extends AppCompatActivity {
 
                 // Obtener el tipo de usuario desde el Intent
                 Intent intent = getIntent();
+                String usuario = intent.getStringExtra("usuario");
                 String tipoUsuario = intent.getStringExtra("tipoUsuario");
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         // Crear el adaptador y pasar el tipo de usuario
-                        publicacionAdapter = new PublicacionAdapter(Muro.this, publicaciones, tipoUsuario);
+                        publicacionAdapter = new PublicacionAdapter(Muro.this, publicaciones, usuario, tipoUsuario, publicacionDao);
                         rvPublicaciones.setAdapter(publicacionAdapter);
                     }
                 });
