@@ -134,6 +134,15 @@ public class Formulario extends AppCompatActivity {
             return;
         }
 
+        // Obtener el usuario del Intent
+        Intent intent = getIntent();
+        String usuario = intent.getStringExtra("usuario"); // El nombre del cliente
+
+        if (usuario == null || usuario.isEmpty()) {
+            Toast.makeText(this, "El usuario no está disponible", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Crear una nueva publicación a partir de los datos del formulario
         Publicacion nuevaPublicacion = new Publicacion();
         nuevaPublicacion.setTitulo(etTitulo.getText().toString());
@@ -141,6 +150,7 @@ public class Formulario extends AppCompatActivity {
         nuevaPublicacion.setEstado("Solicitado");
         nuevaPublicacion.setImagen(imagenBase64);
         nuevaPublicacion.setFecha(etFecha.getText().toString());
+        nuevaPublicacion.setCliente(usuario); // Asignamos el usuario como cliente
 
         // Guardar la publicación en la base de datos en un hilo secundario
         new Thread(new Runnable() {
@@ -182,6 +192,7 @@ public class Formulario extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
 
 
 

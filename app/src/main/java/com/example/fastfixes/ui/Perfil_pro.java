@@ -55,6 +55,8 @@ public class Perfil_pro extends AppCompatActivity {
         // Configurar el clic del botón para regresar a Muro
         muro1.setOnClickListener(v -> {
             Intent intentMuro = new Intent(Perfil_pro.this, Muro.class);
+            intentMuro.putExtra("usuario", usuario);
+            intentMuro.putExtra("tipoUsuario", tipo);
             startActivity(intentMuro);
             finish(); // Finalizar la actividad actual para evitar volver con "atrás"
         });

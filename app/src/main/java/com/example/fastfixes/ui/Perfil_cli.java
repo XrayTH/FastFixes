@@ -44,9 +44,16 @@ public class Perfil_cli extends AppCompatActivity {
 
         // Configurar el clic del botón "Publicar"
         publicar1.setOnClickListener(v -> {
+            // Crear un Intent para ir a la actividad Formulario
             Intent intentFormulario = new Intent(Perfil_cli.this, Formulario.class);
+
+            // Pasar los datos del usuario y tipoUsuario al formulario
+            intentFormulario.putExtra("usuario", usuario);
+            intentFormulario.putExtra("tipoUsuario", tipo);
+
+            // Iniciar la actividad de formulario
             startActivity(intentFormulario);
-            finish(); // Finalizar la actividad actual
+            finish(); // Finalizar la actividad actual para evitar regresar
         });
 
         // Referencia al botón "salir2"
@@ -56,8 +63,9 @@ public class Perfil_cli extends AppCompatActivity {
         salir2.setOnClickListener(v -> {
             Intent intentSalir = new Intent(Perfil_cli.this, MainActivity.class);
             startActivity(intentSalir);
-            finish(); // Finalizar la actividad actual
+            finish(); // Finalizar la actividad actual para evitar regresar
         });
     }
 }
+
 

@@ -8,12 +8,12 @@ import androidx.room.ForeignKey;
 public class Publicacion {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int cliente;
+    private String cliente;
     private String imagen; //Podrías usar un URI o base64 si lo deseas.
     private String titulo;
     private String descripcion;
     private String estado;
-    private int profesional;
+    private String profesional;
     private String fecha;
     private String fechaTerminado;
 
@@ -21,8 +21,8 @@ public class Publicacion {
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public int getCliente() { return cliente; }
-    public void setCliente(int cliente) { this.cliente = cliente; }
+    public String getCliente() { return cliente; }
+    public void setCliente(String cliente) { this.cliente = cliente; }
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
@@ -36,8 +36,8 @@ public class Publicacion {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    public int getProfesional() { return profesional; }
-    public void setProfesional(int profesional) { this.profesional = profesional; }
+    public String getProfesional() { return profesional; }
+    public void setProfesional(String profesional) { this.profesional = profesional; }
 
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }

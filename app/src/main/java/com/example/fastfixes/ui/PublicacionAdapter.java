@@ -44,6 +44,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         holder.tvTitulo.setText(publicacion.getTitulo());
         holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
+        holder.tvCliente.setText("Cliente: " + publicacion.getCliente());
 
         // Obtener y decodificar la imagen Base64
         String imagenBase64 = publicacion.getImagen();
@@ -80,13 +81,14 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
     // ViewHolder interno
     static class PublicacionViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPublicacion;
-        TextView tvTitulo, tvDescripcion, tvEstadoFecha;
+        TextView tvTitulo, tvDescripcion, tvCliente, tvEstadoFecha;
 
         public PublicacionViewHolder(@NonNull View itemView) {
             super(itemView);
             ivPublicacion = itemView.findViewById(R.id.ivPublicacion);
             tvTitulo = itemView.findViewById(R.id.tvTitulo);
             tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            tvCliente = itemView.findViewById(R.id.tvCliente);
             tvEstadoFecha = itemView.findViewById(R.id.tvEstadoFecha);
         }
     }
