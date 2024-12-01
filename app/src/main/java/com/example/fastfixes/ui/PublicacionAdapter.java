@@ -43,6 +43,9 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         // Bind de los datos
         holder.tvTitulo.setText(publicacion.getTitulo());
         holder.tvDescripcion.setText(publicacion.getDescripcion());
+        holder.tvLugar.setText("Lugar: "+publicacion.getLugar());
+        holder.tvTelefono.setText("Telefono: "+publicacion.getTelefono());
+        holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
         holder.tvCliente.setText("Cliente: " + publicacion.getCliente());
 
@@ -81,13 +84,15 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
     // ViewHolder interno
     static class PublicacionViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPublicacion;
-        TextView tvTitulo, tvDescripcion, tvCliente, tvEstadoFecha;
+        TextView tvTitulo, tvDescripcion, tvCliente, tvEstadoFecha, tvLugar, tvTelefono;
 
         public PublicacionViewHolder(@NonNull View itemView) {
             super(itemView);
             ivPublicacion = itemView.findViewById(R.id.ivPublicacion);
             tvTitulo = itemView.findViewById(R.id.tvTitulo);
             tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            tvLugar = itemView.findViewById(R.id.tvLugar);
+            tvTelefono = itemView.findViewById(R.id.tvTelefono);
             tvCliente = itemView.findViewById(R.id.tvCliente);
             tvEstadoFecha = itemView.findViewById(R.id.tvEstadoFecha);
         }

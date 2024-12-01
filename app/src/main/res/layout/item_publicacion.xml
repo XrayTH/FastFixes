@@ -48,6 +48,18 @@
             android:hint="Cliente" />
 
         <TextView
+            android:id="@+id/tvLugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lugar" />
+
+        <TextView
+            android:id="@+id/tvTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telefono" />
+
+        <TextView
             android:id="@+id/tvEstadoFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
