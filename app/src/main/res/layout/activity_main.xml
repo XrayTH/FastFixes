@@ -32,6 +32,15 @@
             android:textSize="26sp"
             android:textStyle="bold" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="240dp"
+            android:layout_height="160dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/herramienta" />
+
+
         <TextView
             android:id="@+id/Subtituloapp"
             android:layout_width="wrap_content"
