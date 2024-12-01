@@ -12,45 +12,42 @@
         android:id="@+id/bienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:text="Bienvenido/a al muro"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Botón Salir -->
-    <Button
-        android:id="@+id/btn_salir"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="12dp"
-        android:text="Salir"
-        app:layout_constraintStart_toEndOf="@id/bienvenida"
-        app:layout_constraintTop_toTopOf="@id/bienvenida" />
 
     <!-- Botón Perfil -->
-    <Button
-        android:id="@+id/btn_perfil"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="16dp"
-        android:text="Perfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_salir" />
 
     <!-- RecyclerView para mostrar las publicaciones -->
+
+    <Button
+        android:id="@+id/btn_perfil"
+        android:layout_width="105dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Perfil"
+        app:layout_constraintBottom_toTopOf="@+id/rvPublicaciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#007BFF"
+    />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPublicaciones"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/btn_perfil"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_perfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -72,25 +72,31 @@
             android:id="@+id/btnAceptar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aceptar Trabajo" />
+            android:text="Aceptar Trabajo"
+            android:backgroundTint="#007BFF"
+            />
 
         <Button
             android:id="@+id/btnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finalizar Solicitud" />
+            android:text="Finalizar Solicitud"
+            android:backgroundTint="#848081"
+            />
 
         <Button
             android:id="@+id/btnLlamar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Llamar" />
+            android:text="Llamar"
+            android:backgroundTint="#008080"/>
 
         <Button
             android:id="@+id/btnWhatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Whatsapp" />
+            android:text="Whatsapp"
+            android:backgroundTint="#25D366"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

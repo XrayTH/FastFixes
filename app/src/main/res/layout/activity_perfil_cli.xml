@@ -84,6 +84,8 @@
             android:id="@+id/btnHistorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#848081"
             android:text="Ver Historial" />
 
         <Button

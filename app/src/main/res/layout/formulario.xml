@@ -66,6 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:background="@drawable/minimal_input_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
             android:hint="Lugar"
             android:inputType="text" />
 
@@ -74,6 +77,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:background="@drawable/minimal_input_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
             android:hint="Telefono"
             android:inputType="text" />
 
