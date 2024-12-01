@@ -22,5 +22,8 @@ public interface PublicacionDao {
 
     @Query("SELECT * FROM publicaciones WHERE id = :id")
     Publicacion obtenerPorId(int id);
+
+    @Query("SELECT * FROM publicaciones WHERE estado = :estado")
+    List<Publicacion> obtenerPorEstado(String estado);
 }
 

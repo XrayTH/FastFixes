@@ -2,7 +2,6 @@ package com.example.fastfixes.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -109,8 +108,8 @@ public class Muro extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // Obtenemos las publicaciones desde el Dao
-                publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerTodas();
+                // Obtener solo las publicaciones con estado "Solicitado"
+                publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerPorEstado("Solicitado");
 
                 // Invertimos el orden de las publicaciones
                 if (publicaciones != null && !publicaciones.isEmpty()) {
