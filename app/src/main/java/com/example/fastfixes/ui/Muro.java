@@ -87,13 +87,7 @@ public class Muro extends AppCompatActivity {
             finish(); // Finalizar la actividad actual
         });
 
-        // Configurar el botón de salir
-        Button btnsalir = findViewById(R.id.btn_salir);
-        btnsalir.setOnClickListener(v -> {
-            Intent salirIntent = new Intent(Muro.this, MainActivity.class);
-            startActivity(salirIntent);
-            finish(); // Finalizar la actividad actual
-        });
+
 
         // Inicializar RecyclerView para las publicaciones
         rvPublicaciones = findViewById(R.id.rvPublicaciones);

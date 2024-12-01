@@ -18,6 +18,8 @@ public class Registro extends AppCompatActivity {
 
         // Referencia al botón "cliente"
         Button btncliente = findViewById(R.id.btncliente);
+        // Referencia al botón "profesional"
+        Button btnvolver1 = findViewById(R.id.btnvolver1);
 
         // Configurar el clic del botón para abrir Resgistro_cli
         btncliente.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +39,18 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Registro.this, Registro_pro.class);
+                startActivity(intent);
+                finish(); // Finalizar la actividad actual para evitar volver con "atrás"
+            }
+        });
+
+
+
+        // Configurar el clic del botón para abrir Registro_pro
+        btnvolver1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Registro.this, MainActivity.class);
                 startActivity(intent);
                 finish(); // Finalizar la actividad actual para evitar volver con "atrás"
             }

@@ -11,47 +11,59 @@
     <!-- Contenedor central para agrupar los elementos -->
     <LinearLayout
         android:id="@+id/centeredContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="376dp"
+        android:layout_height="337dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Título -->
         <TextView
             android:id="@+id/titulo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Desea registrarse como cliente o profesional?"
-            android:textSize="18sp"
-            android:textColor="#333333"
             android:layout_marginBottom="32dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="¿Desea registrarse como cliente o profesional?"
+            android:textColor="#333333"
+            android:textSize="18sp" />
 
         <!-- Botón Cliente -->
         <Button
             android:id="@+id/btncliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cliente"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
             android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:text="Cliente"
+            android:textColor="#FFFFFF" />
 
         <!-- Botón Profesional -->
         <Button
             android:id="@+id/btnprofesional"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profesional"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#DDDDDD"
-            android:textColor="#333333"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:text="Profesional"
+            android:textColor="#333333" />
+
+        <!-- Botón Regresar -->
+        <Button
+            android:id="@+id/btnvolver1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-12dp"
+            android:backgroundTint="#DDDDDD"
+            android:padding="12dp"
+            android:text="Regresar"
+            android:textColor="#333333" />
 
     </LinearLayout>
 
