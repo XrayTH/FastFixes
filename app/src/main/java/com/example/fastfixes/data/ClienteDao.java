@@ -22,5 +22,8 @@ public interface ClienteDao {
 
     @Query("SELECT * FROM clientes WHERE id = :id")
     Cliente obtenerPorId(int id);
+
+    @Query("SELECT * FROM clientes WHERE usuario = :usuario LIMIT 1")
+    Cliente obtenerPorNombre(String usuario);
 }
 
