@@ -18,12 +18,6 @@ public class Resgistro_cli extends AppCompatActivity {
     // Campos del formulario
     private EditText etUsuario;
     private EditText etContrasena;
-    private EditText etNombre;
-    private EditText etApellido;
-    private EditText etCiudad;
-    private EditText etDireccion;
-    private EditText etCorreo;
-    private EditText etTelefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +27,6 @@ public class Resgistro_cli extends AppCompatActivity {
         // Referencias a los campos de entrada
         etUsuario = findViewById(R.id.etUsuario);
         etContrasena = findViewById(R.id.etContrasena);
-        etNombre = findViewById(R.id.etNombre);
-        etApellido = findViewById(R.id.etApellido);
-        etCiudad = findViewById(R.id.etCiudad);
-        etDireccion = findViewById(R.id.etDireccion);
-        etCorreo = findViewById(R.id.etEmail);
-        etTelefono = findViewById(R.id.etTelefono);
 
         // Referencia al botón "Registrar"
         Button btnRegistrar = findViewById(R.id.btnRegistro2);
@@ -65,29 +53,11 @@ public class Resgistro_cli extends AppCompatActivity {
         // Obtener los valores de los campos
         String usuario = etUsuario.getText().toString().trim();
         String contrasena = etContrasena.getText().toString().trim();
-        String nombre = etNombre.getText().toString().trim();
-        String apellido = etApellido.getText().toString().trim();
-        String ciudad = etCiudad.getText().toString().trim();
-        String direccion = etDireccion.getText().toString().trim();
-        String correo = etCorreo.getText().toString().trim();
-        String telefono = etTelefono.getText().toString().trim();
-
-        // Validar campos (esto puede personalizarse según tus necesidades)
-        if (usuario.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || ciudad.isEmpty() || direccion.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
-            Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         // Crear cliente
         Cliente nuevoCliente = new Cliente();
         nuevoCliente.setUsuario(usuario);
         nuevoCliente.setContrasena(contrasena);
-        nuevoCliente.setNombre(nombre);
-        nuevoCliente.setApellido(apellido);
-        nuevoCliente.setCiudad(ciudad);
-        nuevoCliente.setDireccion(direccion);
-        nuevoCliente.setCorreo(correo);
-        nuevoCliente.setTelefono(telefono);
 
         // Guardar cliente en la base de datos (en un hilo secundario)
         new Thread(() -> {
@@ -100,12 +70,6 @@ public class Resgistro_cli extends AppCompatActivity {
                 // Opcionalmente, limpiar los campos
                 etUsuario.setText("");
                 etContrasena.setText("");
-                etNombre.setText("");
-                etApellido.setText("");
-                etCiudad.setText("");
-                etDireccion.setText("");
-                etCorreo.setText("");
-                etTelefono.setText("");
             });
         }).start();
     }

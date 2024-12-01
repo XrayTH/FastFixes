@@ -11,6 +11,8 @@ public class Publicacion {
     private String cliente;
     private String imagen; //Podrías usar un URI o base64 si lo deseas.
     private String titulo;
+    private String telefono;
+    private String lugar;
     private String descripcion;
     private String estado;
     private String profesional;
@@ -26,6 +28,12 @@ public class Publicacion {
 
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
+
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public String getLugar() { return lugar; }
+    public void setLugar(String lugar) { this.lugar = lugar; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }

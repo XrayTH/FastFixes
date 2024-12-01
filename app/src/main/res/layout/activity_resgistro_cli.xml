@@ -55,60 +55,11 @@
                 android:hint="Contraseña"
                 android:inputType="textPassword" />
 
-            <EditText
-                android:id="@+id/etNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nombre"
-                android:background="@drawable/minimal_input_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="text" />
-
             <!-- Campo de texto para Apellido -->
-            <EditText
-                android:id="@+id/etApellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Apellido"
-                android:background="@drawable/minimal_input_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="text" />
 
             <!-- Campo de texto para Correo Electrónico -->
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Correo Electrónico"
-                android:background="@drawable/minimal_input_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="textEmailAddress" />
-
-            <EditText
-                android:id="@+id/etCiudad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ciudad" />
-
-            <EditText
-                android:id="@+id/etDireccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Dirección" />
 
             <!-- Campo de texto para Teléfono -->
-            <EditText
-                android:id="@+id/etTelefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Teléfono"
-                android:background="@drawable/minimal_input_background"
-                android:padding="12dp"
-                android:layout_marginBottom="24dp"
-                android:inputType="phone" />
 
             <!-- Botón Registrarse -->
             <Button

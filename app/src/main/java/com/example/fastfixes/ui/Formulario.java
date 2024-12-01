@@ -31,7 +31,7 @@ public class Formulario extends AppCompatActivity {
     private static final int MAX_IMAGE_SIZE_MB = 1; // Tamaño máximo en MB
     private static final int MAX_IMAGE_DIMENSION = 1000; // Dimensión máxima (ancho o alto)
 
-    private EditText etTitulo, etDescripcion, etFecha;
+    private EditText etTitulo, etDescripcion, etFecha, etTelefono, etLugar;
     private ImageView ivImagenSeleccionada;
     private Button btnSeleccionarImagen, btnGuardar, btnLleveAVerPublicacion;
 
@@ -55,6 +55,9 @@ public class Formulario extends AppCompatActivity {
         // Inicializar los campos del formulario
         etTitulo = findViewById(R.id.etTitulo);
         etDescripcion = findViewById(R.id.etDescripcion);
+        etFecha = findViewById(R.id.etFecha);
+        etTelefono = findViewById(R.id.etTelefono);
+        etLugar = findViewById(R.id.editLugar);
         etFecha = findViewById(R.id.etFecha);
         ivImagenSeleccionada = findViewById(R.id.ivImagenSeleccionada);
         btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen);
@@ -136,6 +139,8 @@ public class Formulario extends AppCompatActivity {
         Publicacion nuevaPublicacion = new Publicacion();
         nuevaPublicacion.setTitulo(etTitulo.getText().toString());
         nuevaPublicacion.setDescripcion(etDescripcion.getText().toString());
+        nuevaPublicacion.setTelefono(etTelefono.getText().toString());
+        nuevaPublicacion.setLugar(etLugar.getText().toString());
         nuevaPublicacion.setEstado("Solicitado");
         nuevaPublicacion.setImagen(imagenBase64);
         nuevaPublicacion.setFecha(etFecha.getText().toString());
@@ -161,6 +166,8 @@ public class Formulario extends AppCompatActivity {
         etTitulo.setText("");
         etDescripcion.setText("");
         etFecha.setText("");
+        etTelefono.setText("");
+        etLugar.setText("");
         ivImagenSeleccionada.setImageResource(android.R.color.transparent);
         imagenBase64 = "";
     }
