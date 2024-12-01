@@ -1,6 +1,8 @@
 package com.example.fastfixes.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,6 +111,27 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
                 publicacionDao.actualizar(publicacion);  // Llama al método de actualización en el DAO
             }).start();
         });
+
+        holder.btnLlamar.setOnClickListener(v -> {
+            String telefono = publicacion.getTelefono(); // Obtén el número de teléfono
+            if (telefono != null && !telefono.isEmpty()) {
+                Intent intentLlamar = new Intent(Intent.ACTION_DIAL);
+                intentLlamar.setData(Uri.parse("tel:" + telefono)); // Carga el número en la app de llamadas
+                context.startActivity(intentLlamar); // Inicia el intent
+            }
+        });
+
+        holder.btnWhatsapp.setOnClickListener(v -> {
+            String telefono = publicacion.getTelefono(); // Obtén el número de teléfono
+            if (telefono != null && !telefono.isEmpty()) {
+                // Asegúrate de que el número esté en formato internacional
+                String numeroWhatsapp = telefono.replace(" ", "").replace("+", "");
+                Intent intentWhatsapp = new Intent(Intent.ACTION_VIEW);
+                intentWhatsapp.setData(Uri.parse("https://wa.me/" + numeroWhatsapp)); // Formato de enlace WhatsApp
+                context.startActivity(intentWhatsapp); // Inicia el intent
+            }
+        });
+
 
         // Obtener y decodificar la imagen Base64
         String imagenBase64 = publicacion.getImagen();
