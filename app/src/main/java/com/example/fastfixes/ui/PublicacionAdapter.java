@@ -63,7 +63,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         }
 
         // Mostrar btnAceptar solo si el estado es "Solicitado"
-        if ("Solicitado".equals(publicacion.getEstado())) {
+        if ("Solicitado".equals(publicacion.getEstado()) && "Profesional".equals(tipoUsuario)) {
             holder.btnAceptar.setVisibility(View.VISIBLE); // Mostrar si el estado es "Solicitado"
         } else {
             holder.btnAceptar.setVisibility(View.GONE); // Ocultar si el estado no es "Solicitado"
