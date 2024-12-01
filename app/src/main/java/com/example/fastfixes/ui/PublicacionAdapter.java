@@ -5,6 +5,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +23,13 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
 
     private final Context context;
     private final List<Publicacion> publicaciones;
+    private final String tipoUsuario; // Nuevo campo para tipo de usuario
 
     // Constructor
-    public PublicacionAdapter(Context context, List<Publicacion> publicaciones) {
+    public PublicacionAdapter(Context context, List<Publicacion> publicaciones, String tipoUsuario) {
         this.context = context;
         this.publicaciones = publicaciones;
+        this.tipoUsuario = tipoUsuario; // Asignamos el tipo de usuario
     }
 
     @NonNull
@@ -48,6 +51,17 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         holder.tvDescripcion.setText(publicacion.getDescripcion());
         holder.tvEstadoFecha.setText("Estado: " + publicacion.getEstado() + " | Fecha: " + publicacion.getFecha());
         holder.tvCliente.setText("Cliente: " + publicacion.getCliente());
+
+        // Condición para ocultar los botones si el tipo de usuario no es "Profesional"
+        if (!"Profesional".equals(tipoUsuario)) {
+            holder.btnAceptar.setVisibility(View.GONE);
+            holder.btnLlamar.setVisibility(View.GONE);
+            holder.btnWhatsapp.setVisibility(View.GONE);
+        } else {
+            holder.btnAceptar.setVisibility(View.VISIBLE);
+            holder.btnLlamar.setVisibility(View.VISIBLE);
+            holder.btnWhatsapp.setVisibility(View.VISIBLE);
+        }
 
         // Obtener y decodificar la imagen Base64
         String imagenBase64 = publicacion.getImagen();
@@ -85,6 +99,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
     static class PublicacionViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPublicacion;
         TextView tvTitulo, tvDescripcion, tvCliente, tvEstadoFecha, tvLugar, tvTelefono;
+        Button btnAceptar, btnLlamar, btnWhatsapp;
 
         public PublicacionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +110,11 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             tvTelefono = itemView.findViewById(R.id.tvTelefono);
             tvCliente = itemView.findViewById(R.id.tvCliente);
             tvEstadoFecha = itemView.findViewById(R.id.tvEstadoFecha);
+
+            // Inicialización de los botones
+            btnAceptar = itemView.findViewById(R.id.btnAceptar);
+            btnLlamar = itemView.findViewById(R.id.btnLlamar);
+            btnWhatsapp = itemView.findViewById(R.id.btnWhatsapp);
         }
     }
 }

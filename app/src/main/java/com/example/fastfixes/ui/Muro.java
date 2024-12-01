@@ -103,25 +103,25 @@ public class Muro extends AppCompatActivity {
         obtenerPublicaciones(); // Llamamos a la función para obtener las publicaciones
     }
 
-    private void obtenerPublicaciones() {
-        // Usamos un Thread o AsyncTask para hacer la consulta de Room
+    public void obtenerPublicaciones() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // Obtener solo las publicaciones con estado "Solicitado"
                 publicaciones = (ArrayList<Publicacion>) publicacionDao.obtenerPorEstado("Solicitado");
 
-                // Invertimos el orden de las publicaciones
                 if (publicaciones != null && !publicaciones.isEmpty()) {
                     java.util.Collections.reverse(publicaciones);
                 }
 
-                // Actualizamos el RecyclerView en el hilo principal
+                // Obtener el tipo de usuario desde el Intent
+                Intent intent = getIntent();
+                String tipoUsuario = intent.getStringExtra("tipoUsuario");
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // Configuramos el adaptador con los datos obtenidos
-                        publicacionAdapter = new PublicacionAdapter(Muro.this, publicaciones);
+                        // Crear el adaptador y pasar el tipo de usuario
+                        publicacionAdapter = new PublicacionAdapter(Muro.this, publicaciones, tipoUsuario);
                         rvPublicaciones.setAdapter(publicacionAdapter);
                     }
                 });
