@@ -78,6 +78,12 @@
 
         <!-- Botón Salir -->
         <Button
+            android:id="@+id/btnHistorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mis Trabajos" />
+
+        <Button
             android:id="@+id/salir1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -65,6 +65,23 @@ public class Perfil_cli extends AppCompatActivity {
             startActivity(intentSalir);
             finish(); // Finalizar la actividad actual para evitar regresar
         });
+
+        // Referencia al botón "btnHistorial"
+        Button btnHistorial = findViewById(R.id.btnHistorial);
+
+        // Configurar el clic del botón "Historial"
+        btnHistorial.setOnClickListener(v -> {
+            // Crear un Intent para ir a la actividad Historial
+            Intent intentHistorial = new Intent(Perfil_cli.this, Historial.class);
+
+            // Pasar los datos del usuario y tipoUsuario a la actividad Historial
+            intentHistorial.putExtra("usuario", usuario);
+            intentHistorial.putExtra("tipoUsuario", tipo);
+
+            // Iniciar la actividad Historial
+            startActivity(intentHistorial);
+            finish(); // Finalizar la actividad actual para evitar regresar
+        });
     }
 }
 

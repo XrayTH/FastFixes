@@ -81,6 +81,12 @@
 
         <!-- Botón Salir -->
         <Button
+            android:id="@+id/btnHistorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver Historial" />
+
+        <Button
             android:id="@+id/salir2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
