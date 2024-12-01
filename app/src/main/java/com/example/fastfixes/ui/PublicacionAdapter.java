@@ -69,6 +69,13 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             holder.btnAceptar.setVisibility(View.GONE); // Ocultar si el estado no es "Solicitado"
         }
 
+        // Mostrar btnFinalizar solo si el estado no es "Finalizado" y el tipo de usuario es "Cliente"
+        if (!"Finalizado".equals(publicacion.getEstado()) && "Cliente".equals(tipoUsuario)) {
+            holder.btnFinalizar.setVisibility(View.VISIBLE); // Mostrar si el estado no es "Finalizado" y es "Cliente"
+        } else {
+            holder.btnFinalizar.setVisibility(View.GONE); // Ocultar si no cumple las condiciones
+        }
+
         // Obtener y decodificar la imagen Base64
         String imagenBase64 = publicacion.getImagen();
         if (imagenBase64 != null && !imagenBase64.isEmpty()) {
@@ -105,7 +112,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
     static class PublicacionViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPublicacion;
         TextView tvTitulo, tvDescripcion, tvCliente, tvEstadoFecha, tvLugar, tvTelefono;
-        Button btnAceptar, btnLlamar, btnWhatsapp;
+        Button btnAceptar, btnLlamar, btnWhatsapp, btnFinalizar; // Nuevo botón
 
         public PublicacionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,6 +128,7 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
             btnAceptar = itemView.findViewById(R.id.btnAceptar);
             btnLlamar = itemView.findViewById(R.id.btnLlamar);
             btnWhatsapp = itemView.findViewById(R.id.btnWhatsapp);
+            btnFinalizar = itemView.findViewById(R.id.btnFinalizar); // Nuevo botón
         }
     }
 }
