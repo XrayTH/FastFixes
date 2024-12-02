@@ -21,81 +21,130 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Título Bienvenido -->
-        <TextView
-            android:id="@+id/titulo5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bienvenido"
-            android:textSize="24sp"
-            android:textColor="#333333"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Nombre del Usuario -->
-
-        <TextView
-            android:id="@+id/txtTipoUsuario"
+        <!-- Tarjeta con título y subtítulo -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTitleSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Tipo Usuario"
-            android:textColor="#007BFE"
-            android:textSize="20sp" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtUsuario"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Título con efecto shimmer -->
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="0.9"
+                    app:shimmer_duration="1500"
+                    app:shimmer_highlight_alpha="1.0">
+
+                    <TextView
+                        android:id="@+id/titulo5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bienvenido"
+                        android:textColor="#007BFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-bold"
+                        android:shadowColor="#888888"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="4" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <!-- Subtítulo -->
+                <TextView
+                    android:id="@+id/txtUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de Usuario"
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta para Tipo de Usuario -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDesarrolladores"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre de Usuario"
-            android:textSize="20sp"
-            android:textColor="#007BFF"
-            android:layout_marginBottom="32dp"
-            android:gravity="center" />
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
 
-        <!-- Subtítulo para Publicar -->
-
-        <TextView
-            android:id="@+id/titulo6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Desea publicar algún daño?"
-            android:textSize="18sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="24dp" />
-
-
+            <TextView
+                android:id="@+id/txtTipoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo Usuario"
+                android:textSize="20sp"
+                android:textColor="#007BFE"
+                android:gravity="center"
+                android:padding="12dp" />
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Botón Publicar -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/publicar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Publicar"
-            android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
             android:layout_marginBottom="16dp"
-            android:padding="12dp" />
+            android:padding="8dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            app:backgroundTint="#007BFF"
+            style="@style/Widget.MaterialComponents.Button" />
 
-        <!-- Botón Ver Posts -->
-
-        <!-- Botón Salir -->
-        <Button
+        <!-- Botón Ver Historial -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnHistorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Ver Historial"
+            android:textColor="#333333"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#848081"
-            android:text="Ver Historial" />
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/black"
+            android:backgroundTint="#DDDDDD"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black"
+            style="@style/Widget.MaterialComponents.Button" />
 
-        <Button
+        <!-- Botón Salir -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/salir2"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/black"
             android:text="Salir"
-            android:backgroundTint="#DDDDDD"
-            android:textColor="#333333"
-            android:padding="12dp" />
-
+            android:textColor="#FFFFFF"
+            app:cornerRadius="16dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/background_color"
+            app:rippleColor="@color/background_color"
+            app:strokeColor="@color/background_color"
+            app:strokeWidth="2dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

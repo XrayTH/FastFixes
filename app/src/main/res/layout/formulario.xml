@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5F5F5"
     android:padding="16dp">
 
@@ -23,15 +24,22 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Botón para seleccionar la imagen -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSeleccionarImagen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Seleccionar Imagen"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
-            android:padding="12dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="12dp"
+            app:backgroundTint="#007BFF"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginBottom="16dp" />
 
         <!-- Campo para el título -->
         <EditText
@@ -57,10 +65,7 @@
             android:inputType="textMultiLine"
             android:textColor="#333333" />
 
-        <!-- Campo para el estado -->
-
-        <!-- Campo para la fecha -->
-
+        <!-- Campo para el lugar -->
         <EditText
             android:id="@+id/editLugar"
             android:layout_width="match_parent"
@@ -72,6 +77,7 @@
             android:hint="Lugar"
             android:inputType="text" />
 
+        <!-- Campo para el teléfono -->
         <EditText
             android:id="@+id/etTelefono"
             android:layout_width="match_parent"
@@ -80,9 +86,10 @@
             android:background="@drawable/minimal_input_background"
             android:padding="12dp"
             android:layout_marginBottom="16dp"
-            android:hint="Telefono"
+            android:hint="Teléfono"
             android:inputType="text" />
 
+        <!-- Campo para la fecha -->
         <EditText
             android:id="@+id/etFecha"
             android:layout_width="match_parent"
@@ -94,30 +101,42 @@
             android:inputType="date"
             android:textColor="#333333" />
 
-        <!-- Campo para la fecha de finalización -->
-
         <!-- Botón para publicar daños -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Publicar Daños"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
-            android:padding="12dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="12dp"
+            app:backgroundTint="#007BFF"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginBottom="16dp" />
 
         <!-- Botón para ver la publicación -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLleveAVerPublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ver Publicación"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#DDDDDD"
             android:textColor="#333333"
-            android:padding="12dp" />
-
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/black"
+            android:padding="12dp"
+            app:backgroundTint="#DDDDDD"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginBottom="16dp" />
     </LinearLayout>
 
 </ScrollView>
+

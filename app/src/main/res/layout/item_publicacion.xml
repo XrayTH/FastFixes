@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="16dp">
 
         <!-- Imagen de la publicación -->
         <ImageView
@@ -21,15 +21,29 @@
             android:scaleType="centerCrop"
             android:contentDescription="Imagen de la publicación" />
 
-        <!-- Título de la publicación -->
-        <TextView
-            android:id="@+id/tvTitulo"
-            android:layout_width="match_parent"
+        <!-- Título de la publicación con efecto shimmer -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Título"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="0.9"
+            app:shimmer_duration="1500"
+            app:shimmer_highlight_alpha="1.0">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FastFixes"
+                android:textColor="#007BFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-bold"
+                android:shadowColor="#888888"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <!-- Descripción -->
         <TextView
@@ -37,66 +51,100 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:hint="Descripción"
-            android:textSize="14sp" />
+            android:text="Tu app de mantenimiento"
+            android:textSize="14sp"
+            android:textColor="#666666"/>
 
-        <!-- Estado y fecha -->
+        <!-- Cliente -->
         <TextView
             android:id="@+id/tvCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cliente" />
+            android:text="Cliente"
+            android:textSize="12sp"/>
 
+        <!-- Lugar -->
         <TextView
             android:id="@+id/tvLugar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Lugar" />
+            android:text="Lugar"
+            android:textSize="12sp"/>
 
+        <!-- Teléfono -->
         <TextView
             android:id="@+id/tvTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefono" />
+            android:text="Telefono"
+            android:textSize="12sp"/>
 
+        <!-- Estado y Fecha -->
         <TextView
             android:id="@+id/tvEstadoFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:hint="Estado: Pendiente | Fecha: 2024-12-01"
             android:text="Estado: Pendiente | Fecha: 2024-12-01"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#666666" />
 
+        <!-- Botón Aceptar Trabajo -->
         <Button
             android:id="@+id/btnAceptar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Aceptar Trabajo"
+            android:textColor="@color/white"
             android:backgroundTint="#007BFF"
-            />
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="8dp" />
 
+        <!-- Botón Finalizar Solicitud -->
         <Button
             android:id="@+id/btnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Finalizar Solicitud"
+            android:textColor="@color/white"
             android:backgroundTint="#848081"
-            />
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="8dp" />
 
+        <!-- Botón Llamar -->
         <Button
             android:id="@+id/btnLlamar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Llamar"
-            android:backgroundTint="#008080"/>
+            android:textColor="@color/white"
+            android:backgroundTint="#008080"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="8dp" />
 
+        <!-- Botón Whatsapp -->
         <Button
             android:id="@+id/btnWhatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Whatsapp"
-            android:backgroundTint="#25D366"/>
+            android:textColor="@color/white"
+            android:backgroundTint="#25D366"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
+            android:padding="8dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+

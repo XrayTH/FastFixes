@@ -24,66 +24,107 @@
             android:padding="16dp">
 
             <!-- Título -->
-            <TextView
-                android:id="@+id/titulo1"
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registro Cliente"
-                android:textSize="24sp"
-                android:textColor="#333333"
-                android:textStyle="bold"
-                android:layout_marginBottom="32dp"
-                android:gravity="center" />
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                android:layout_marginBottom="24dp"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <!-- Título con efecto shimmer -->
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:shimmer_auto_start="true"
+                        app:shimmer_base_alpha="0.9"
+                        app:shimmer_duration="1500"
+                        app:shimmer_highlight_alpha="1.0">
+
+                        <TextView
+                            android:id="@+id/titulo1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Registro Cliente"
+                            android:textColor="#007BFF"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-bold"
+                            android:shadowColor="#888888"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="4" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Campo de texto para Usuario -->
-            <EditText
-                android:id="@+id/etUsuario"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usuario"
-                android:background="@drawable/minimal_input_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="text" />
+                android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Usuario"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:background="@drawable/minimal_input_background" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Campo de texto para Nombre -->
-            <EditText
-                android:id="@+id/etContrasena"
+            <!-- Campo de texto para Contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/minimal_input_background"
-                android:ems="10"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:hint="Contraseña"
-                android:inputType="textPassword" />
-
-            <!-- Campo de texto para Apellido -->
-
-            <!-- Campo de texto para Correo Electrónico -->
-
-            <!-- Campo de texto para Teléfono -->
+                android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:background="@drawable/minimal_input_background" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Botón Registrarse -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegistro2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registrarse"
-                android:backgroundTint="#007BFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="16dp"
-                android:padding="12dp" />
+                android:textColor="@color/white"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:rippleColor="@color/white"
+                android:padding="12dp"
+                app:backgroundTint="#007BFF"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_marginBottom="16dp" />
 
             <!-- Botón Regresar -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnregresar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Regresar"
-                android:backgroundTint="#DDDDDD"
-                android:textColor="#333333"
-                android:padding="12dp" />
+                android:textColor="@color/black"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                app:rippleColor="@color/black"
+                android:padding="12dp"
+                app:backgroundTint="#DDDDDD"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
     </ScrollView>

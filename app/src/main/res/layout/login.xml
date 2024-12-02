@@ -21,16 +21,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Título -->
-        <TextView
-            android:id="@+id/titulo1"
-            android:layout_width="wrap_content"
+        <!-- Tarjeta con título y subtítulo -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTitleSubtitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inicio Sesión"
-            android:textSize="24sp"
-            android:textColor="#333333"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Título con efecto shimmer -->
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="0.9"
+                    app:shimmer_duration="1500"
+                    app:shimmer_highlight_alpha="1.0">
+
+                    <TextView
+                        android:id="@+id/titulo1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inicio Sesión"
+                        android:textColor="#007BFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-bold"
+                        android:shadowColor="#888888"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="4" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Campo de texto para Email -->
         <EditText
@@ -55,26 +87,41 @@
             android:inputType="textPassword" />
 
         <!-- Botón Iniciar Sesión -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
-            android:backgroundTint="#007BFF"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/white"
             android:layout_marginBottom="16dp"
-            android:padding="12dp" />
+            android:padding="8dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            app:backgroundTint="#007BFF"
+            style="@style/Widget.MaterialComponents.Button" />
 
         <!-- Botón Regresar -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnregresar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Regresar"
-            android:backgroundTint="#DDDDDD"
-            android:textColor="#333333"
-            android:padding="12dp" />
+            android:textColor="@color/black"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:rippleColor="@color/black"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            app:backgroundTint="#DDDDDD"
+            app:iconPadding="8dp"
+            app:iconTint="@color/black"
+            style="@style/Widget.MaterialComponents.Button" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
